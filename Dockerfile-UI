@@ -1,0 +1,20 @@
+# Use the official Node.js image
+FROM node:20-alpine
+
+# Set working directory inside the container
+WORKDIR /ostadui
+
+# Copy package.json and package-lock.json (if available)
+COPY OstadUI/package*.json ./
+
+# Install frontend dependencies
+RUN npm install
+
+# Copy all frontend source code from OstadUI directory
+COPY OstadUI/ .
+
+# Expose port 5173 for Vite or similar dev server
+EXPOSE 5173
+
+# Run the frontend development server
+CMD ["npm", "run", "dev"]

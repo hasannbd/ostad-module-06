@@ -1,0 +1,64 @@
+services:
+  mongo:
+    image: mongo:6.0
+    container_name: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: Ostad-DB
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - ostad-net
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: always
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_SERVER: mongo
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongo
+    networks:
+      - ostad-net
+
+  ostad-server:
+    build:
+      context: ./
+      dockerfile: Dockerfile-server
+    container_name: ostad-server
+    restart: always
+    ports:
+      - "5050:5050"
+    depends_on:
+      - mongo
+    networks:
+      - ostad-net
+
+  ostad-ui:
+    build:
+      context: ./
+      dockerfile: Dockerfile-UI
+    container_name: ostad-ui
+    restart: always
+    ports:
+      - "5173:5173"
+    depends_on:
+      - ostad-server
+    networks:
+      - ostad-net
+
+volumes:
+  mongo-data:
+
+
+networks:
+  ostad-net:
+    driver: bridge
