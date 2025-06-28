@@ -5,7 +5,7 @@ const path = require("path");
 const { MongoClient } = require("mongodb");
 
 const PORT = 5050;
-const MONGO_URL = "mongodb://ostad:ostad@mongo:27017";
+const MONGO_URL = "mongodb://root:example@mongo:27017";
 const client = new MongoClient(MONGO_URL);
 
 // Middleware
