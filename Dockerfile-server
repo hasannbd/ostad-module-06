@@ -10,7 +10,7 @@ COPY OstadServer/ .
 # Install backend dependencies
 RUN npm install
 
-# Expose port 5000
+# Expose port 5050
 EXPOSE 5050
 
 # Command to run the server

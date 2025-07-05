@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ostad-ui
+  namespace: siraj
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ostad-ui
+  template:
+    metadata:
+      labels:
+        app: ostad-ui
+    spec:
+      containers:
+        - name: ostad-ui
+          image: ostad-ui:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5173

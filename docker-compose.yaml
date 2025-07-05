@@ -1,6 +1,6 @@
 services:
   mongo:
-    image: mongo:6.0
+    image: mongo:latest
     container_name: mongo
     restart: always
     environment:
@@ -15,7 +15,7 @@ services:
       - ostad-net
 
   mongo-express:
-    image: mongo-express
+    image: mongo-express:latest
     container_name: mongo-express
     restart: always
     environment:
@@ -34,6 +34,7 @@ services:
       context: ./
       dockerfile: Dockerfile-server
     container_name: ostad-server
+    image: ostad-server:1.0
     restart: always
     ports:
       - "5050:5050"
@@ -47,6 +48,7 @@ services:
       context: ./
       dockerfile: Dockerfile-UI
     container_name: ostad-ui
+    image: ostad-ui:1.0
     restart: always
     ports:
       - "5173:5173"
