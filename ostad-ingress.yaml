@@ -4,7 +4,7 @@ metadata:
   name: ostad-ingress
   namespace: siraj
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
@@ -17,7 +17,7 @@ spec:
               service:
                 name: ostad-ui
                 port:
-                  number: 80
+                  number: 5173
 
     - host: mongo.local
       http:
