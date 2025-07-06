@@ -1,73 +1,36 @@
-# Ostad Project
+# Kubernetes Deployment of a Multi-Component Application
 
-This repository contains two separate projects:
+This repository contains kubernetes resources to deploy:
 
+- **MongoDB** — A NoSQL database
+- **MongoExpress** — A web-based admin interface for MongoDB
 - **Ostadserver** — An Express.js backend server
 - **OstadUI** — A React frontend application built with Vite
 
 ---
 
-## Prerequisites
 
-Make sure you have the following installed on your system:
+## A brief description of each resources
 
-- [Node.js](https://nodejs.org/) (version 16 or above recommended)
-- npm (comes with Node.js) or yarn
-
----
-
-## Getting Started
-
-### 1. Run Ostadserver (Express Backend)
-
-```bash
-cd Ostadserver
-npm install
-npm start
-```
-
-This will start the Express server, usually on `http://localhost:5000` (or your configured port).
+- **1. mongo-deployment.yaml** — Deployment resource for MongoDB
+- **2. mongo-service.yaml** — Service resource for MongoDB
+- **3. mongo-express-deployment.yaml** — Deployment resource for MongoDB admin UI
+- **4. mongo-express-service.yaml** — Service resource for MongoDB admin UI
+- **5. ostad-server-deployment.yaml** — Deployment resource for Express.js backend server
+- **6. ostad-server-service.yaml** — Service resource for Express.js backend server
+- **7. ostad-ui-deployment.yaml** — Deployment resource for React frontend application
+- **8. ostad-ui-service.yaml** — Service resource for React frontend application
+- **9. ostad-ingress.yaml** — Nginx ingress controller to expose application outside cluster
 
 ---
 
-### 2. Run OstadUI (React + Vite Frontend)
 
-```bash
-cd OstadUI
-npm install
-npm run dev
-```
+## How it works?
 
-This will start the Vite development server, usually on `http://localhost:3000` (or your configured port).
+- Pull the repository
+- Apply all the k8s resources
+- Add necessary host entry (e.g. 127.0.0.1 ui.local, mongo.local)
+- Browse ui.local for application fronend and mongo.local for MongoDB admin UI
 
 ---
 
-## Notes
-
-- Make sure your backend server (`Ostadserver`) is running before starting the frontend (`OstadUI`) if your frontend depends on any API from the backend.
-- You can customize ports by editing the `package.json` scripts or configuration files (`vite.config.js` for frontend and `server.js` or equivalent for backend).
-- For production builds:
-
-  - Backend: Use `npm run build` if applicable or deploy as needed.
-  - Frontend: Run `npm run build` inside `OstadUI` to create a production build.
-
----
-
-## Useful Commands
-
-| Command         | Description                      | Location    |
-| --------------- | -------------------------------- | ----------- |
-| `npm install`   | Install dependencies             | Both        |
-| `npm start`     | Start Express server             | Ostadserver |
-| `npm run dev`   | Start Vite development server    | OstadUI     |
-| `npm run build` | Build production frontend bundle | OstadUI     |
-
----
-
-## Contact
-
-For questions or support, please contact \[Your Name] or open an issue in this repository.
-
----
-
-Happy coding! 🚀
